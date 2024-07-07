@@ -216,6 +216,9 @@ public class SignUpThree extends JFrame implements ActionListener{
                 int rowsAffected = stmt.executeUpdate();
                 if(rowsAffected > 0 && rowAffected > 0){
                     JOptionPane.showMessageDialog(null, "Card Number: "+cardNumber + "\n PIN: "+ pinNumber);
+                    
+                    setVisible(false);
+                    new Deposit(pinNumber).setVisible(true);
                 }else
                     JOptionPane.showMessageDialog(null, "error occured while inserting the record");
 
@@ -225,6 +228,8 @@ public class SignUpThree extends JFrame implements ActionListener{
             
         }else if(ae.getSource() == cancel){
             System.exit(0);
+            setVisible(false);
+            new Login().setVisible(true);
         }
     }
     

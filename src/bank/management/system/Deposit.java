@@ -1,11 +1,12 @@
 
 package bank.management.system;
 //import com.mysql.cj.xdevapi.Statement;
+//import com.sun.jdi.connect.spi.Connection;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
+import java.sql.*;
 import java.util.*;
 
 public class Deposit extends JFrame implements ActionListener{
@@ -34,7 +35,7 @@ public class Deposit extends JFrame implements ActionListener{
         amount.setBounds(170,350,320,25);
         image.add(amount);
         
-        JButton deposit = new JButton("Deposit");
+        deposit = new JButton("Deposit");
         deposit.setBounds(355, 485, 150, 30);
         deposit.addActionListener(this);
         image.add(deposit);
@@ -49,21 +50,24 @@ public class Deposit extends JFrame implements ActionListener{
         setVisible(true);
         
     }
+    @Override
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == deposit){
             String number = amount.getText();
-            Date date = new Date();
+//            Date date = new Date();
             if(number.equals("")){
                 JOptionPane.showMessageDialog(null,"Amount field cannot be empty");
             }else{
 
             try{
-               Connection c = Conn.getConnection();
-               Statement stmt = c.createStatement();
+             Connection c = Conn.getConnection();
+//               Conn c = new Conn();
                String query = "insert into bank values('"+pinnumber+"','"+date+"','Deposit','"+number+"')";
-              
-               c.stmt.executeUpdate(query);
-               
+               Statement stmt;
+                stmt = c.createStatement(query);
+               JOptionPane.showMessageDialog(null,"Rs "+number+" deposited successfully");
+               setVisible(false);
+               new Transactions(pinnumber).setVisible(true);
                }catch(Exception e){
                    e.printStackTrace();
                }
