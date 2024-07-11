@@ -1,13 +1,12 @@
 
 package bank.management.system;
-//import com.mysql.cj.xdevapi.Statement;
-//import com.sun.jdi.connect.spi.Connection;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.*;
+//import java.util.*;
 
 public class Deposit extends JFrame implements ActionListener{
     JButton back, deposit;
@@ -54,17 +53,18 @@ public class Deposit extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == deposit){
             String number = amount.getText();
-//            Date date = new Date();
+
+            long millis=System.currentTimeMillis();  
+            java.sql.Date date=new java.sql.Date(millis); 
+            
             if(number.equals("")){
                 JOptionPane.showMessageDialog(null,"Amount field cannot be empty");
             }else{
 
             try{
              Connection c = Conn.getConnection();
-//               Conn c = new Conn();
                String query = "insert into bank values('"+pinnumber+"','"+date+"','Deposit','"+number+"')";
-               Statement stmt;
-                stmt = c.createStatement(query);
+               PreparedStatement stmt = c.prepareStatement(query); 
                JOptionPane.showMessageDialog(null,"Rs "+number+" deposited successfully");
                setVisible(false);
                new Transactions(pinnumber).setVisible(true);
