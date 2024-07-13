@@ -40,7 +40,7 @@ public class Withdraw extends JFrame implements ActionListener{
         image.add(withdraw);
         
         back = new JButton("Back");
-        back.setBounds(355, 485, 150, 30);
+        back.setBounds(355, 520, 150, 30);
         back.addActionListener(this);
         image.add(back);
         
