@@ -66,7 +66,7 @@ public class SignUpThree extends JFrame implements ActionListener{
         cardDetail.setBounds(100,330,300,30);
         add(cardDetail);
         
-        JLabel number = new JLabel("XXXX-XXXX-XXXX-4184");
+        JLabel number = new JLabel("XXXX-XXXX-XXXX-XXXX");
         number.setFont(new Font("Raleway",Font.BOLD,22));
         number.setBounds(330,300,300,30);
         add(number);
