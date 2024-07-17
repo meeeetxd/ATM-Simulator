@@ -82,9 +82,9 @@ public class FastCash extends JFrame implements ActionListener{
                 int balance = 0;
                 while(rs.next()){
                     if(rs.getString("type")=="Deposit"){
-                        balance += Integer.parseInt(rs.getString("amount"));
-                    }else{
                         balance -= Integer.parseInt(rs.getString("amount"));
+                    }else{
+                        balance += Integer.parseInt(rs.getString("amount"));
                     }
                 }
                 
